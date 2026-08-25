@@ -1,97 +1,91 @@
 import React from 'react';
 
-const skillGroups = [
-  {
-    group: 'Tangan & Mesin',
-    color: '#8A6A4F',
-    items: ['Stamping', 'Cutting', 'Ultrasonic Welding', 'Mesin Dakron'],
-  },
-  {
-    group: 'Digital & Kreatif',
-    color: '#4A5D50',
-    items: ['HTML / CSS / JS', 'PWA Development', 'Desain Grafis', 'Video Editing'],
-  },
-  {
-    group: 'Alat Bantu',
-    color: '#2E5D8A',
-    items: ['AI Tools', 'ReportLab (PDF)', 'Excel Tracking'],
-  },
+const experience = [
+  { year: '2024 — kini', role: 'Pengembang Aplikasi Internal', place: 'DAWA (Bisnis Herbal)' },
+  { year: '2022 — 2024', role: 'Operator Produksi', place: 'Lantai Pabrik' },
+  { year: '2021 — kini', role: 'Penulis & Kreator Konten', place: 'jurnalRamdani' },
 ];
+
+const education = [
+  { year: '—', role: 'Belajar mandiri', place: 'Pemrograman & Desain Digital' },
+];
+
+const skills = ['Stamping, Cutting, Ultrasonic Welding', 'HTML / CSS / JS, PWA Development', 'Desain Grafis & Video Editing', 'AI Tools, Excel Tracking'];
+
+const softwares = ['Figma', 'VS Code', 'Excel', 'Canva', 'Premiere', 'ReportLab'];
+
+function Item({ year, role, place }) {
+  return (
+    <div style={{ marginBottom: '1.1rem' }}>
+      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'baseline' }}>
+        <span style={{ color: 'var(--coral)', fontWeight: 800 }}>+</span>
+        <div>
+          <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--coral)', display: 'block' }}>{year}</span>
+          <span style={{ fontWeight: 700, color: 'var(--navy)' }}>{role}</span>
+          <span style={{ display: 'block', fontSize: '0.9rem', color: 'var(--brown)' }}>{place}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Skills() {
   return (
-    <section style={{ background: '#F2EDE4', padding: '2rem 1.5rem 5rem' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
-        <span
-          style={{
-            fontFamily: "'Baloo 2', sans-serif",
-            fontWeight: 700,
-            fontSize: '0.85rem',
-            letterSpacing: '2px',
-            color: '#8A6A4F',
-            textTransform: 'uppercase',
-          }}
-        >
-          Arsip — Kemampuan
-        </span>
-        <h2
-          style={{
-            fontFamily: "'Baloo 2', sans-serif",
-            fontWeight: 700,
-            fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
-            color: '#2E2A26',
-            margin: '0.75rem 0 2.5rem',
-          }}
-        >
-          Yang saya kerjakan
-        </h2>
+    <section style={{ background: 'var(--lavender)', padding: '4rem 1.5rem' }}>
+      <style>{`
+        .exp-grid {
+          max-width: 1000px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2.5rem;
+        }
+        .exp-heading {
+          font-family: 'Baloo 2', sans-serif;
+          font-weight: 800;
+          font-size: 1.4rem;
+          color: var(--navy);
+          margin-bottom: 1.2rem;
+          transform: rotate(-1deg);
+          display: inline-block;
+        }
+        .soft-chip {
+          display: inline-block;
+          background: var(--paper);
+          border: 2px solid var(--navy);
+          border-radius: 0.6rem;
+          padding: 0.35rem 0.8rem;
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: var(--navy);
+          margin: 0 0.5rem 0.5rem 0;
+        }
+        @media (max-width: 700px) {
+          .exp-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
+      <div className="exp-grid">
+        <div>
+          <span className="exp-heading">Pengalaman</span>
+          {experience.map((e) => <Item key={e.role} {...e} />)}
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '1.5rem',
-          }}
-        >
-          {skillGroups.map((g) => (
-            <div
-              key={g.group}
-              style={{
-                background: '#fff',
-                borderRadius: '1.25rem',
-                padding: '1.75rem',
-                borderTop: `5px solid ${g.color}`,
-                boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
-              }}
-            >
-              <h3
-                style={{
-                  fontFamily: "'Baloo 2', sans-serif",
-                  fontWeight: 700,
-                  fontSize: '1.2rem',
-                  color: g.color,
-                  marginBottom: '1rem',
-                }}
-              >
-                {g.group}
-              </h3>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                {g.items.map((item) => (
-                  <li
-                    key={item}
-                    style={{
-                      fontSize: '0.98rem',
-                      color: '#4A443C',
-                      padding: '0.4rem 0',
-                      borderBottom: '1px solid #EEE6D8',
-                    }}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
+          <span className="exp-heading" style={{ marginTop: '1rem' }}>Pendidikan</span>
+          {education.map((e) => <Item key={e.role} {...e} />)}
+        </div>
+
+        <div>
+          <span className="exp-heading">Kemampuan</span>
+          {skills.map((s) => (
+            <div key={s} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.6rem' }}>
+              <span style={{ color: 'var(--coral)', fontWeight: 800 }}>+</span>
+              <span style={{ color: 'var(--navy)', fontWeight: 600 }}>{s}</span>
             </div>
           ))}
+
+          <span className="exp-heading" style={{ marginTop: '1rem' }}>Alat Bantu</span>
+          <div>
+            {softwares.map((s) => <span key={s} className="soft-chip">{s}</span>)}
+          </div>
         </div>
       </div>
     </section>

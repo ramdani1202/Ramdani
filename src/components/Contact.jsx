@@ -2,38 +2,21 @@ import React from 'react';
 
 export default function Contact() {
   return (
-    <section
-      style={{
-        background: '#2E2A26',
-        padding: '5rem 1.5rem',
-        textAlign: 'center',
-      }}
-    >
+    <section style={{ background: 'var(--navy)', padding: '4.5rem 1.5rem', textAlign: 'center' }}>
       <div style={{ maxWidth: 600, margin: '0 auto' }}>
-        <span
-          style={{
-            fontFamily: "'Baloo 2', sans-serif",
-            fontWeight: 700,
-            fontSize: '0.85rem',
-            letterSpacing: '2px',
-            color: '#C9A961',
-            textTransform: 'uppercase',
-          }}
-        >
-          Arsip — Kontak
-        </span>
+        <span className="hand" style={{ fontSize: '1.4rem', color: 'var(--peach)' }}>ayo terhubung</span>
         <h2
           style={{
             fontFamily: "'Baloo 2', sans-serif",
-            fontWeight: 700,
+            fontWeight: 800,
             fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
-            color: '#F2EDE4',
-            margin: '0.75rem 0 1.5rem',
+            color: 'var(--paper)',
+            margin: '0.5rem 0 1.5rem',
           }}
         >
-          Mari terhubung
+          Mari mengobrol
         </h2>
-        <p style={{ color: '#C9C2B4', lineHeight: 1.7, marginBottom: '2rem' }}>
+        <p style={{ color: '#C9C2E0', lineHeight: 1.7, marginBottom: '2rem' }}>
           Ganti bagian ini dengan email, Instagram, atau kontak lain yang
           ingin kamu tampilkan.
         </p>
@@ -44,9 +27,9 @@ export default function Contact() {
             fontFamily: "'Baloo 2', sans-serif",
             fontWeight: 700,
             fontSize: '1rem',
-            color: '#2E2A26',
-            background: '#C9A961',
-            padding: '0.85rem 2rem',
+            color: 'var(--navy)',
+            background: 'var(--coral)',
+            padding: '0.85rem 2.2rem',
             borderRadius: '999px',
             textDecoration: 'none',
           }}
@@ -54,7 +37,7 @@ export default function Contact() {
           Kirim Email
         </a>
       </div>
-      <p style={{ color: '#6B6255', fontSize: '0.85rem', marginTop: '3rem' }}>
+      <p style={{ color: '#8A85B0', fontSize: '0.85rem', marginTop: '3rem' }}>
         © {new Date().getFullYear()} Ramdani. Dibangun satu langkah pada satu waktu.
       </p>
     </section>

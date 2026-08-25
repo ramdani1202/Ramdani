@@ -1,153 +1,76 @@
 import React from 'react';
-import AboutIntro from './AboutIntro.jsx';
-
-const softwareSkills = [
-  { name: 'HTML/CSS/JS', level: 85, color: '#2E5D8A' },
-  { name: 'PWA Dev', level: 80, color: '#4A5D50' },
-  { name: 'Photoshop', level: 70, color: '#8A6A4F' },
-  { name: 'Video Editing', level: 65, color: '#C9A961' },
-];
 
 export default function About() {
   return (
-    <section style={{ background: '#F2EDE4', paddingBottom: '4rem' }}>
-      <AboutIntro />
+    <section style={{ background: 'var(--cream)', padding: '4rem 1.5rem' }}>
+      <style>{`
+        .about-grid {
+          max-width: 1000px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: 2.5rem;
+          align-items: start;
+        }
+        @media (max-width: 700px) {
+          .about-grid { grid-template-columns: 1fr; }
+        }
+        .hello-tag {
+          font-family: 'Baloo 2', sans-serif;
+          font-weight: 800;
+          font-size: clamp(2.2rem, 5vw, 3.2rem);
+          color: var(--navy);
+          transform: rotate(-2deg);
+          display: inline-block;
+        }
+        .contact-pill {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          font-weight: 600;
+          color: var(--navy);
+          margin-top: 0.7rem;
+        }
+        .contact-icon {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background: var(--coral);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.85rem;
+          flex-shrink: 0;
+        }
+      `}</style>
+      <div className="about-grid">
+        <div>
+          <span className="hello-tag">Halo!</span>
+        </div>
+        <div>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.85, color: 'var(--brown)', marginBottom: '1.1rem' }}>
+            Nama saya <strong style={{ color: 'var(--navy)' }}>Ramdani</strong>. Saya membangun sesuatu
+            dengan tangan dan dengan pikiran — mulai dari presisi kerja mesin di lantai
+            produksi, sampai aplikasi digital yang saya rancang sendiri untuk menjalankan
+            bisnis herbal DAWA.
+          </p>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.85, color: 'var(--brown)', marginBottom: '1.5rem' }}>
+            Di sela itu, saya menulis dan berbagi refleksi lewat jurnalRamdani. Saya percaya
+            proses yang sabar dan bertahap mengalahkan hasil yang terburu-buru.
+          </p>
 
-      <div style={{ maxWidth: 900, margin: '-3rem auto 0', padding: '0 1.25rem', position: 'relative', zIndex: 10 }}>
-        <div
-          style={{
-            background: '#FFFFFF',
-            borderRadius: '2rem',
-            padding: 'clamp(1.5rem, 4vw, 3rem)',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.12)',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "'Baloo 2', sans-serif",
-              fontWeight: 700,
-              fontSize: '0.85rem',
-              letterSpacing: '2px',
-              color: '#C9A961',
-              textTransform: 'uppercase',
-            }}
-          >
-            About Me!
-          </span>
-
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '2rem',
-              marginTop: '1.5rem',
-              alignItems: 'flex-start',
-            }}
-          >
-            <div style={{ flex: '1 1 320px', minWidth: 260 }}>
-              <h1
-                style={{
-                  fontFamily: "'Baloo 2', sans-serif",
-                  fontWeight: 800,
-                  fontSize: 'clamp(2rem, 6vw, 3.2rem)',
-                  color: '#2E5D8A',
-                  margin: 0,
-                  lineHeight: 1.05,
-                }}
-              >
-                RAMDANI
-              </h1>
-              <p
-                style={{
-                  fontFamily: "'Baloo 2', sans-serif",
-                  fontWeight: 600,
-                  fontSize: '0.95rem',
-                  color: '#8A6A4F',
-                  margin: '0.4rem 0 1.2rem',
-                }}
-              >
-                a.k.a jurnalRamdani
-              </p>
-              <p style={{ fontSize: '1rem', lineHeight: 1.8, color: '#4A443C', marginBottom: '1rem' }}>
-                <strong>Hai!</strong> Saya membangun sesuatu dengan tangan dan
-                dengan pikiran — mulai dari presisi kerja mesin di lantai
-                produksi, sampai aplikasi digital yang saya rancang sendiri
-                untuk bisnis herbal DAWA. Di sela itu, saya menulis dan
-                berbagi refleksi lewat jurnalRamdani.
-              </p>
-              <p style={{ fontSize: '1rem', lineHeight: 1.8, color: '#4A443C' }}>
-                Saya percaya proses yang sabar dan bertahap mengalahkan hasil
-                yang terburu-buru — setiap karya di sini adalah catatan dari
-                langkah demi langkah, bukan tujuan akhir.
-              </p>
-            </div>
-
-            <div style={{ flex: '0 1 220px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-              <div
-                style={{
-                  width: 200,
-                  height: 200,
-                  borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #B9E4F7, #F2EDE4)',
-                  border: '4px solid #C9A961',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  overflow: 'hidden',
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "'Baloo 2', sans-serif",
-                    fontWeight: 700,
-                    color: '#8A6A4F',
-                    fontSize: '0.85rem',
-                    textAlign: 'center',
-                    padding: '0 1rem',
-                  }}
-                >
-                  Foto Ramdani
-                  <br />
-                  di sini
-                </span>
-              </div>
-            </div>
+          <div className="contact-pill">
+            <span className="contact-icon">✉</span> ramdani@example.com
           </div>
-
-          <div style={{ marginTop: '2.5rem' }}>
-            <h3
-              style={{
-                fontFamily: "'Baloo 2', sans-serif",
-                fontWeight: 700,
-                fontSize: '1.3rem',
-                color: '#2E2A26',
-                marginBottom: '1rem',
-              }}
-            >
-              Keahlian
-            </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
-              {softwareSkills.map((s) => (
-                <div key={s.name}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.3rem' }}>
-                    <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#4A443C' }}>{s.name}</span>
-                  </div>
-                  <div style={{ height: 8, background: '#EEE6D8', borderRadius: 999 }}>
-                    <div
-                      style={{
-                        height: '100%',
-                        width: `${s.level}%`,
-                        background: s.color,
-                        borderRadius: 999,
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="contact-pill">
+            <span className="contact-icon">▶</span> jurnalRamdani
+          </div>
+          <div className="contact-pill">
+            <span className="contact-icon">☎</span> +62 8xx-xxxx-xxxx
           </div>
         </div>
       </div>
     </section>
   );
-              }
+}

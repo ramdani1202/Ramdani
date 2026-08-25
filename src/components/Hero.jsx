@@ -1,199 +1,140 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 
-function CloudShape() {
+function Squiggle({ color = '#E8623A', width = 140 }) {
   return (
-    <svg viewBox="0 0 200 100" width="100%" style={{ display: 'block' }}>
-      <ellipse cx="60" cy="60" rx="55" ry="32" fill="white" />
-      <ellipse cx="110" cy="45" rx="45" ry="38" fill="white" />
-      <ellipse cx="150" cy="62" rx="40" ry="28" fill="white" />
-      <ellipse cx="40" cy="70" rx="35" ry="22" fill="white" />
+    <svg viewBox="0 0 140 16" width={width} style={{ display: 'block' }}>
+      <path
+        d="M2 10 C 14 2, 24 2, 36 10 S 58 18, 70 10 S 94 2, 106 10 S 130 18, 138 8"
+        fill="none"
+        stroke={color}
+        strokeWidth="3.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 
 export default function Hero() {
-  const [scrollY, setScrollY] = useState(0);
-  const containerRef = useRef(null);
-  const [maxScroll, setMaxScroll] = useState(1);
-
-  useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY);
-    const onResize = () => {
-      if (containerRef.current) {
-        setMaxScroll(containerRef.current.offsetHeight - window.innerHeight);
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize);
-    onResize();
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onResize);
-    };
-  }, []);
-
-  const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
-
-  const text = 'PORTFOLIO';
-  const letters = text.split('');
-
-  const waveOpacity = Math.max(1 - progress * 2.2, 0);
-  const waveTranslateUp = progress * 120;
-
-  const nameProgress = Math.min(Math.max((progress - 0.35) / 0.65, 0), 1);
-  const nameTranslateY = (1 - nameProgress) * -300;
-  const nameOpacity = nameProgress;
-
-  const skyShift = progress * 15;
-
   return (
-    <div ref={containerRef} className="hero-scroll-track">
+    <header className="hero-section">
       <style>{`
-        @keyframes waveMove {
-          0%   { transform: translateY(0px); }
-          50%  { transform: translateY(-20px); }
-          100% { transform: translateY(0px); }
-        }
-        @keyframes drift1 {
-          0%   { transform: translateX(0px); }
-          100% { transform: translateX(60px); }
-        }
-        @keyframes drift2 {
-          0%   { transform: translateX(0px); }
-          100% { transform: translateX(-40px); }
-        }
-        .hero-scroll-track {
-          height: 250vh;
+        .hero-section {
           position: relative;
+          background: linear-gradient(180deg, #FBE3CC 0%, #FDF6EC 70%);
+          padding: 3.5rem 1.5rem 2.5rem;
+          overflow: hidden;
         }
-        .wave-letter {
-          display: inline-block;
-          font-family: 'Baloo 2', sans-serif;
-          font-weight: 800;
-          animation: waveMove 1.8s ease-in-out infinite;
+        .hero-inner {
+          max-width: 1100px;
+          margin: 0 auto;
+          position: relative;
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 2rem;
+          align-items: center;
         }
-        .cloud {
+        .hero-blob {
           position: absolute;
-          opacity: 0.9;
+          border-radius: 50%;
+          background: var(--lavender);
+          opacity: 0.55;
+          filter: blur(2px);
         }
-        @media (prefers-reduced-motion: reduce) {
-          .wave-letter { animation: none; }
-          .cloud { animation: none !important; }
+        .photo-slot {
+          position: relative;
+          min-height: 380px;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+        }
+        .photo-slot img {
+          position: relative;
+          z-index: 2;
+          max-width: 100%;
+          max-height: 460px;
+          object-fit: contain;
+          filter: drop-shadow(0 18px 30px rgba(44,46,82,0.18));
+        }
+        .photo-slot .placeholder {
+          position: relative;
+          z-index: 2;
+          width: 220px;
+          height: 220px;
+          border-radius: 50%;
+          border: 3px dashed #C9A17A;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          font-family: 'Caveat', cursive;
+          font-size: 1.3rem;
+          color: var(--brown);
+          background: rgba(255,255,255,0.4);
+          padding: 1rem;
+        }
+        .title-word {
+          font-weight: 800;
+          color: var(--coral);
+          line-height: 0.92;
+          font-size: clamp(3.2rem, 9vw, 6rem);
+          text-shadow: 4px 4px 0 rgba(44,46,82,0.08);
+        }
+        .title-word.tilt {
+          transform: rotate(-3deg);
+          display: inline-block;
+        }
+        .badge-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.6rem;
+          margin-top: 1.5rem;
+        }
+        .badge {
+          font-size: 0.85rem;
+          font-weight: 700;
+          padding: 0.4rem 0.9rem;
+          border-radius: 999px;
+          background: var(--paper);
+          color: var(--navy);
+          border: 2px solid var(--navy);
+        }
+        @media (max-width: 800px) {
+          .hero-inner { grid-template-columns: 1fr; }
+          .photo-slot { order: -1; min-height: 280px; }
         }
       `}</style>
 
-      <div
-        className="hero-sticky"
-        style={{
-          position: 'sticky',
-          top: 0,
-          height: '100vh',
-          overflow: 'hidden',
-          background: `linear-gradient(180deg,
-            hsl(${205 - skyShift}, 85%, ${68 - progress * 10}%) 0%,
-            hsl(${200 - skyShift}, 80%, ${78 - progress * 8}%) 45%,
-            hsl(${45 + progress * 10}, 70%, ${90 - progress * 5}%) 100%)`,
-        }}
-      >
-        <div className="cloud" style={{ top: '12%', left: '5%', width: 160, animation: 'drift1 14s ease-in-out infinite alternate', opacity: 0.95 - progress * 0.5 }}>
-          <CloudShape />
-        </div>
-        <div className="cloud" style={{ top: '22%', left: '60%', width: 120, animation: 'drift2 18s ease-in-out infinite alternate', opacity: 0.9 - progress * 0.5 }}>
-          <CloudShape />
-        </div>
-        <div className="cloud" style={{ top: '8%', left: '75%', width: 100, animation: 'drift1 22s ease-in-out infinite alternate', opacity: 0.85 - progress * 0.5 }}>
-          <CloudShape />
-        </div>
-        <div className="cloud" style={{ top: '35%', left: '20%', width: 90, animation: 'drift2 16s ease-in-out infinite alternate', opacity: 0.8 - progress * 0.5 }}>
-          <CloudShape />
-        </div>
+      <div className="hero-blob" style={{ width: 260, height: 260, top: -60, right: -60 }} />
+      <div className="hero-blob" style={{ width: 160, height: 160, bottom: 20, left: -50 }} />
 
-        <div
-          style={{
-            position: 'absolute',
-            top: '42%',
-            left: '50%',
-            transform: `translate(-50%, calc(-50% - ${waveTranslateUp}px))`,
-            opacity: waveOpacity,
-            display: 'flex',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            width: '100%',
-            padding: '0 1rem',
-            pointerEvents: 'none',
-          }}
-        >
-          {letters.map((letter, i) => (
-            <span
-              key={i}
-              className="wave-letter"
-              style={{
-                animationDelay: `${i * 0.12}s`,
-                fontSize: 'clamp(2rem, 7vw, 5rem)',
-                color: '#2E5D8A',
-                textShadow: '3px 3px 0px rgba(255,255,255,0.55)',
-              }}
-            >
-              {letter}
-            </span>
-          ))}
-        </div>
-
-        <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: `translate(-50%, calc(-50% + ${nameTranslateY}px))`,
-            opacity: nameOpacity,
-            textAlign: 'center',
-            width: '100%',
-            pointerEvents: 'none',
-          }}
-        >
-          <h1
-            style={{
-              fontFamily: "'Baloo 2', sans-serif",
-              fontWeight: 800,
-              fontSize: 'clamp(3rem, 10vw, 7rem)',
-              color: '#3A2E1F',
-              margin: 0,
-              textShadow: '4px 4px 0px rgba(255,255,255,0.5)',
-              letterSpacing: '1px',
-            }}
-          >
-            Ramdani
-          </h1>
-          <p
-            style={{
-              fontFamily: "'Baloo 2', sans-serif",
-              fontWeight: 500,
-              fontSize: 'clamp(1rem, 2.5vw, 1.4rem)',
-              color: '#5A4A38',
-              marginTop: '0.5rem',
-            }}
-          >
-            terus melangkah, satu proses pada satu waktu
+      <div className="hero-inner">
+        <div>
+          <span className="hand" style={{ fontSize: '1.6rem', color: 'var(--brown)' }}>
+            halo, perkenalkan
+          </span>
+          <div style={{ marginTop: '0.25rem' }}>
+            <span className="title-word tilt">PORT</span>
+            <br />
+            <span className="title-word" style={{ marginLeft: '0.4em' }}>FOLIO</span>
+          </div>
+          <Squiggle />
+          <p style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--navy)', marginTop: '0.75rem' }}>
+            Operator Produksi / Pengembang Aplikasi / Pencerita
           </p>
+          <div className="badge-row">
+            <span className="badge">Manufaktur</span>
+            <span className="badge">Pengembangan Aplikasi</span>
+            <span className="badge">Konten &amp; Refleksi</span>
+          </div>
         </div>
 
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '6%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            opacity: Math.max(1 - progress * 3, 0),
-            color: '#2E5D8A',
-            fontFamily: "'Baloo 2', sans-serif",
-            fontWeight: 600,
-            fontSize: '0.9rem',
-            textAlign: 'center',
-          }}
-        >
-          ↓ geser ke bawah ↓
+        <div className="photo-slot">
+          {/* Ganti src di bawah ini dengan foto PNG transparan kamu, taruh di src/assets/ */}
+          <div className="placeholder">
+            taruh foto PNG<br />transparan kamu<br />di sini ✨
+          </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
