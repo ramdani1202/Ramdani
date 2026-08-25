@@ -4,15 +4,33 @@
   padding: 0;
 }
 
+:root {
+  --cream: #FDF6EC;
+  --peach: #FBE3CC;
+  --coral: #E8623A;
+  --navy: #2C2E52;
+  --brown: #6B5B4E;
+  --lavender: #E4E1F0;
+  --paper: #FFFDF9;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   font-family: 'Quicksand', sans-serif;
-  background: #0B1120;
-  color: #2E2A26;
+  background: var(--cream);
+  color: var(--navy);
   overflow-x: hidden;
+}
+
+h1, h2, h3, .display {
+  font-family: 'Baloo 2', sans-serif;
+}
+
+.hand {
+  font-family: 'Caveat', cursive;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -25,6 +43,6 @@ body {
 }
 
 ::selection {
-  background: #C9A961;
-  color: #2E2A26;
+  background: var(--coral);
+  color: var(--paper);
 }
