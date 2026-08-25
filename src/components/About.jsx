@@ -1,20 +1,18 @@
 import React from 'react';
 
 function WaveDivider() {
+  // Continues the deep-sea colour the Hero ends on, then settles into the
+  // paper background — like water receding as the page comes ashore.
   return (
-    <div style={{ position: 'relative', lineHeight: 0, background: '#F2EDE4' }}>
+    <div style={{ position: 'relative', lineHeight: 0, background: '#154A87' }}>
       <style>{`
         @keyframes waveDrift {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
         .wave-layer {
-          animation: waveDrift 18s linear infinite;
+          animation: waveDrift 16s linear infinite;
           width: 200%;
-        }
-        .wave-layer.slow {
-          animation-duration: 26s;
-          animation-direction: reverse;
         }
         @media (prefers-reduced-motion: reduce) {
           .wave-layer { animation: none; }
@@ -23,23 +21,14 @@ function WaveDivider() {
       <svg
         viewBox="0 0 2400 200"
         preserveAspectRatio="none"
-        style={{ display: 'block', width: '100%', height: '140px' }}
+        style={{ display: 'block', width: '100%', height: '110px' }}
       >
         <path
-          className="wave-layer slow"
-          d="M0,100 C200,160 400,40 600,100 C800,160 1000,40 1200,100
-             C1400,160 1600,40 1800,100 C2000,160 2200,40 2400,100
-             L2400,200 L0,200 Z"
-          fill="#B9E4F7"
-          opacity="0.6"
-        />
-        <path
           className="wave-layer"
-          d="M0,120 C200,60 400,180 600,120 C800,60 1000,180 1200,120
-             C1400,60 1600,180 1800,120 C2000,60 2200,180 2400,120
+          d="M0,110 C200,60 400,150 600,110 C800,60 1000,150 1200,110
+             C1400,60 1600,150 1800,110 C2000,60 2200,150 2400,110
              L2400,200 L0,200 Z"
-          fill="#6EC6FF"
-          opacity="0.75"
+          fill="#F2EDE4"
         />
       </svg>
     </div>
