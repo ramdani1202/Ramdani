@@ -6,5 +6,5 @@ import react from '@vitejs/plugin-react'
 // maka base harus '/situs-ramdani/'
 export default defineConfig({
   plugins: [react()],
-  base: '/ramdani/',
+  base: '/Ramdani/',
 })
