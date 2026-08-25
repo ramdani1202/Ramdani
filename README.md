@@ -1,4 +1,4 @@
- # Portfolio Ramdani web
+# Portfolio Ramdani
 
 Website portfolio pribadi, dibangun dengan React + Vite.
 
