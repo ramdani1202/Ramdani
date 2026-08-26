@@ -39,6 +39,17 @@ export default function Hero() {
           background: var(--lavender);
           opacity: 0.55;
           filter: blur(2px);
+          animation: floatBlob 9s ease-in-out infinite;
+        }
+        .hero-blob.b2 {
+          animation-duration: 11s;
+          animation-delay: -3s;
+        }
+        @keyframes floatBlob {
+          0%   { transform: translate(0, 0) scale(1); }
+          33%  { transform: translate(18px, -22px) scale(1.06); }
+          66%  { transform: translate(-14px, 14px) scale(0.96); }
+          100% { transform: translate(0, 0) scale(1); }
         }
         .photo-slot {
           position: relative;
@@ -71,6 +82,11 @@ export default function Hero() {
           color: var(--brown);
           background: rgba(255,255,255,0.4);
           padding: 1rem;
+          animation: floatSoft 5s ease-in-out infinite;
+        }
+        @keyframes floatSoft {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
         }
         .title-word {
           font-weight: 800;
@@ -78,10 +94,68 @@ export default function Hero() {
           line-height: 0.92;
           font-size: clamp(3.2rem, 9vw, 6rem);
           text-shadow: 4px 4px 0 rgba(44,46,82,0.08);
+          display: inline-block;
+          opacity: 0;
+          transform: translateY(40px) rotate(-6deg);
+          animation: wordIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
         .title-word.tilt {
-          transform: rotate(-3deg);
-          display: inline-block;
+          animation-delay: 0.05s;
+        }
+        .title-word.word2 {
+          animation-delay: 0.28s;
+        }
+        @keyframes wordIn {
+          0% {
+            opacity: 0;
+            transform: translateY(40px) rotate(-6deg) scale(0.85);
+          }
+          60% {
+            opacity: 1;
+            transform: translateY(-6px) rotate(1deg) scale(1.03);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) rotate(-3deg) scale(1);
+          }
+        }
+        .title-word.word2 {
+          animation-name: wordIn2;
+        }
+        @keyframes wordIn2 {
+          0% {
+            opacity: 0;
+            transform: translateY(40px) rotate(4deg) scale(0.85);
+          }
+          60% {
+            opacity: 1;
+            transform: translateY(-6px) rotate(-1deg) scale(1.03);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg) scale(1);
+          }
+        }
+        .hand-in {
+          opacity: 0;
+          animation: fadeUp 0.6s ease forwards;
+        }
+        .squiggle-in {
+          opacity: 0;
+          transform: scaleX(0.6);
+          transform-origin: left;
+          animation: squiggleIn 0.6s ease forwards;
+          animation-delay: 0.55s;
+        }
+        .fade-in-1 { opacity: 0; animation: fadeUp 0.6s ease forwards; animation-delay: 0.65s; }
+        .fade-in-2 { opacity: 0; animation: fadeUp 0.6s ease forwards; animation-delay: 0.8s; }
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(14px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes squiggleIn {
+          from { opacity: 0; transform: scaleX(0.6); }
+          to   { opacity: 1; transform: scaleX(1); }
         }
         .badge-row {
           display: flex;
@@ -102,26 +176,36 @@ export default function Hero() {
           .hero-inner { grid-template-columns: 1fr; }
           .photo-slot { order: -1; min-height: 280px; }
         }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-blob, .photo-slot .placeholder, .title-word,
+          .hand-in, .squiggle-in, .fade-in-1, .fade-in-2 {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+        }
       `}</style>
 
       <div className="hero-blob" style={{ width: 260, height: 260, top: -60, right: -60 }} />
-      <div className="hero-blob" style={{ width: 160, height: 160, bottom: 20, left: -50 }} />
+      <div className="hero-blob b2" style={{ width: 160, height: 160, bottom: 20, left: -50 }} />
 
       <div className="hero-inner">
         <div>
-          <span className="hand" style={{ fontSize: '1.6rem', color: 'var(--brown)' }}>
+          <span className="hand hand-in" style={{ fontSize: '1.6rem', color: 'var(--brown)' }}>
             halo, perkenalkan
           </span>
           <div style={{ marginTop: '0.25rem' }}>
             <span className="title-word tilt">PORT</span>
             <br />
-            <span className="title-word" style={{ marginLeft: '0.4em' }}>FOLIO</span>
+            <span className="title-word word2" style={{ marginLeft: '0.4em' }}>FOLIO</span>
           </div>
-          <Squiggle />
-          <p style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--navy)', marginTop: '0.75rem' }}>
+          <div className="squiggle-in">
+            <Squiggle />
+          </div>
+          <p className="fade-in-1" style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--navy)', marginTop: '0.75rem' }}>
             Operator Produksi / Pengembang Aplikasi / Pencerita
           </p>
-          <div className="badge-row">
+          <div className="badge-row fade-in-2">
             <span className="badge">Manufaktur</span>
             <span className="badge">Pengembangan Aplikasi</span>
             <span className="badge">Konten &amp; Refleksi</span>
