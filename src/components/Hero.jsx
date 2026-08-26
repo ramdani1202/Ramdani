@@ -1,4 +1,5 @@
 import React from 'react';
+import foto from '../assets/foto-ramdani.png';
 
 function Squiggle({ color = '#E8623A', width = 140 }) {
   return (
@@ -213,10 +214,7 @@ export default function Hero() {
         </div>
 
         <div className="photo-slot">
-          {/* Ganti src di bawah ini dengan foto PNG transparan kamu, taruh di src/assets/ */}
-          <div className="placeholder">
-            taruh foto PNG<br />transparan kamu<br />di sini ✨
-          </div>
+          <img src={foto} alt="Ramdani" />
         </div>
       </div>
     </header>
