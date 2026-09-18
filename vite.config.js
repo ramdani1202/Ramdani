@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react'
 // tidak perlu hapus cache manual, dan tidak perlu edit apapun di sini.
 export default defineConfig({
   plugins: [react()],
-  base: '/Ramdani/', 
+  base: '/Ramdani/',
   build: {
     rollupOptions: {
       output: {
