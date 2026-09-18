@@ -7,8 +7,11 @@
   --color-navy-deep: #123244;
   --color-cream-text: #F9F8F4;
   --color-line: rgba(26, 72, 95, 0.15);
+  --color-yellow: #F5B921;    /* Aksen kuning untuk nama */
+  --color-name-black: #2B2B2B;
 
   --font-display: "Anton", "Arial Narrow", sans-serif; /* Gaya font ala "CREATE" */
+  --font-name: "Baloo 2", "Arial Rounded MT Bold", sans-serif; /* Gaya font bulat/chunky untuk nama */
   --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
   --space-1: 0.5rem;
@@ -199,15 +202,18 @@ p { margin: 0; }
 }
 
 .hero__name {
-  font-family: var(--font-display);
+  font-family: var(--font-name);
+  font-weight: 800;
   font-size: clamp(4rem, 16vw, 11rem);
   line-height: 0.85;
-  color: var(--color-navy-deep);
+  color: var(--color-name-black);
   text-transform: uppercase;
   letter-spacing: 0.01em;
   position: relative;
   z-index: 1;
   white-space: nowrap;
+  -webkit-text-stroke: 2px var(--color-yellow);
+  paint-order: stroke fill;
 }
 
 .hero__portrait {
