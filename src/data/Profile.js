@@ -8,8 +8,8 @@ export const profile = {
 Warm regards, Ramdani. Looking forward to working with you.`,
   photo:fotoProfil,
   contact: {
-    linkedin: "https://www.linkedin.com/in/ramdani-63/",
-    whatsapp: "083829175207",
+    linkedin: "https://www.linkedin.com/in/ramdani-831020221?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    whatsapp: "083829975287",
     instagram: "https://www.instagram.com/jurnalramdani",
   },
 };
