@@ -1,0 +1,61 @@
+name: Deploy portfolio ke GitHub Pages
+
+# Workflow ini berjalan OTOMATIS setiap ada push ke branch main.
+# Tidak perlu dijalankan manual, tidak perlu edit versi di vite.config.js,
+# dan tidak perlu hapus cache Chrome secara manual — karena Vite
+# sudah memberi nama file baru (hash) di setiap build, browser otomatis
+# mengambil versi terbaru.
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+          cache-dependency-path: myportfolio/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./myportfolio
+        run: npm install
+
+      - name: Build project
+        working-directory: ./myportfolio
+        run: npm run build
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload build hasil
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./myportfolio/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy ke GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
