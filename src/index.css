@@ -219,7 +219,7 @@ p { margin: 0; }
   aspect-ratio: 3 / 4;
   border-radius: var(--radius);
   overflow: hidden;
-  background: var(--color-navy);
+  background: transparent;
   box-shadow: 0 20px 40px rgba(18, 50, 68, 0.25);
 }
 
