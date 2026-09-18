@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section id="top" className="hero">
       <div className="hero__inner">
-        <div className="hero__badge">Freelance Projects</div>
+        <div className="hero__badge">Open to work</div>
 
         <div className="hero__stage">
           <h1 className="hero__name">{profile.name}</h1>
