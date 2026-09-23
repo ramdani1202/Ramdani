@@ -1,24 +1,25 @@
-import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
-import About from "./components/About.jsx";
 import Skills from "./components/Skills.jsx";
+import About from "./components/About.jsx";
 import Project from "./components/Project.jsx";
 import Contact from "./components/Contact.jsx";
 
-// Urutan section sesuai PDF: 1. Hero  2. About  3. Project
-// Skills & Contact ditambahkan sebagai pelengkap karena isinya
-// sudah diminta secara eksplisit di brief (list skill, kontak WA/LinkedIn/Instagram).
+// Layout mengikuti pola bento-grid 2 kolom dari referensi desain:
+// setiap "row" adalah dua panel rounded berdampingan, dengan jarak (gap)
+// dan latar gelap di antaranya — nav ikut menyatu di dalam panel hero.
 export default function App() {
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
+    <div className="page">
+      <Hero />
+      <Skills />
+      <div className="bento-row">
         <About />
-        <Skills />
         <Project />
-      </main>
+      </div>
       <Contact />
-    </>
+      <footer className="site-footer">
+        <span>© {new Date().getFullYear()} Ramdani — built with React &amp; Vite.</span>
+      </footer>
+    </div>
   );
 }
