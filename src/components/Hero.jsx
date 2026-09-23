@@ -47,7 +47,7 @@ export default function Hero() {
         <p className="teaser-text">{profile.tagline}</p>
 
         <div className="teaser-photo">
-          {profile.photo && <img src={profile.photo} alt={profile.name} />}
+          {profile.photoAlt && <img src={profile.photoAlt} alt={profile.name} />}
         </div>
         <a href="#about" className="pf-btn pf-btn--dark teaser-cta">
           Read more <span className="pf-btn__dot" aria-hidden="true">→</span>
