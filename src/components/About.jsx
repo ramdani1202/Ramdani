@@ -6,7 +6,7 @@ export default function About() {
 
   return (
     <div className="panel about-panel" id="about">
-      {profile.photo && <img src={profile.photo} alt={profile.name} />}
+      {profile.photoAlt && <img src={profile.photoAlt} alt={profile.name} />}
       <div className="about-panel__overlay" />
       <div className="about-panel__scrim" />
 
