@@ -21,7 +21,14 @@ export default function Skills() {
 
         <div className="process-tiles">
           {tiles.map((cat) => (
-            <div className="tile" key={cat.category}>{cat.category}</div>
+            <div className="tile" key={cat.category}>
+              <ul>
+                {cat.items.slice(0, 3).map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <span className="tile__label">{cat.category}</span>
+            </div>
           ))}
         </div>
       </div>
