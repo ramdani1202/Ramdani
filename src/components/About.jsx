@@ -5,23 +5,23 @@ export default function About() {
   const paragraphs = profile.bio.split("\n\n");
 
   return (
-    <section id="about" className="about">
-      <div className="about__inner">
-        <div className="pf-label">About</div>
+    <div className="panel about-panel" id="about">
+      {profile.photo && <img src={profile.photo} alt={profile.name} />}
+      <div className="about-panel__overlay" />
+      <div className="about-panel__scrim" />
 
-        <div className="about__grid">
-          <div className="about__bio">
-            {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
-          </div>
+      <div className="about-panel__content">
+        <div className="about-panel__label">About</div>
+        <h2 className="about-panel__title">Who I Am</h2>
+        <p className="about-panel__sub">The person behind the work.</p>
 
-          <div className="about__principles">
-            <h3>Cara saya bekerja</h3>
-            <ul>
-              {workPrinciples.map((p) => <li key={p}>{p}</li>)}
-            </ul>
+        <div className="about-panel__bio">
+          {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+          <div className="about-panel__principles">
+            {workPrinciples.map((p) => <span key={p}>{p}</span>)}
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

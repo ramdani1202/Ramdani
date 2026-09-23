@@ -1,21 +1,51 @@
-import { skillCategories } from "../data/Skills.js";
+import { skillCategories, workPrinciples } from "../data/Skills.js";
 
 export default function Skills() {
-  return (
-    <section id="skills" className="skills">
-      <div className="skills__inner">
-        <div className="pf-label pf-label--light">Skills</div>
-        <h2 className="pf-heading">Tools dan bahasa yang saya pakai sehari-hari</h2>
+  const tiles = skillCategories.slice(0, 3);
+  const sideLeft = skillCategories[3];
+  const sideRight = skillCategories[4];
 
-        <div className="skills__grid">
-          {skillCategories.map((cat) => (
-            <div className="skill-card" key={cat.category}>
-              <h3>{cat.category}</h3>
-              <ul>
-                {cat.items.map((item) => <li key={item}>{item}</li>)}
-              </ul>
-            </div>
+  return (
+    <section id="skills" className="bento-row">
+      {/* Panel "Behind the Work": headline + CTA + 3 tile kecil, sama seperti panel "Shaping Experiences" */}
+      <div className="panel panel--dark process-panel">
+        <div className="pf-label">Behind the Work</div>
+        <h2 className="teaser-title">Tools I Reach for Every Day</h2>
+        <p className="teaser-text">
+          Campuran AI tools, software desain, dan bahasa pemrograman — dipilih
+          karena benar-benar menyelesaikan masalah, bukan sekadar tren.
+        </p>
+        <a href="#project" className="pf-btn pf-btn--solid">
+          See the work <span className="pf-btn__dot" aria-hidden="true">→</span>
+        </a>
+
+        <div className="process-tiles">
+          {tiles.map((cat) => (
+            <div className="tile" key={cat.category}>{cat.category}</div>
           ))}
+        </div>
+      </div>
+
+      {/* Panel Skills: 3 kartu, satu di-highlight — sama seperti panel "Pricing" di referensi */}
+      <div className="panel panel--dark">
+        <div className="pf-label">Skills</div>
+        <h2 className="teaser-title">Tools &amp; Languages I Use</h2>
+
+        <div className="skills-cards">
+          <div className="skill-tier">
+            <h4>{sideLeft.category}</h4>
+            <ul>{sideLeft.items.map((i) => <li key={i}>{i}</li>)}</ul>
+          </div>
+
+          <div className="skill-tier skill-tier--featured">
+            <h4>How I Work</h4>
+            <ul>{workPrinciples.map((p) => <li key={p}>{p}</li>)}</ul>
+          </div>
+
+          <div className="skill-tier">
+            <h4>{sideRight.category}</h4>
+            <ul>{sideRight.items.map((i) => <li key={i}>{i}</li>)}</ul>
+          </div>
         </div>
       </div>
     </section>
