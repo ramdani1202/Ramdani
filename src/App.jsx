@@ -4,6 +4,7 @@ import Skills from "./components/Skills.jsx";
 import About from "./components/About.jsx";
 import Project from "./components/Project.jsx";
 import Contact from "./components/Contact.jsx";
+import MusicPlayer from "./components/MusicPlayer.jsx";
 
 // Layout mengikuti pola bento-grid 2 kolom dari referensi desain:
 // setiap "row" adalah dua panel rounded berdampingan, dengan jarak (gap)
@@ -37,6 +38,7 @@ export default function App() {
 
   return (
     <div className="page">
+      <MusicPlayer />
       <Hero />
       <Skills />
       <div className="bento-row">
